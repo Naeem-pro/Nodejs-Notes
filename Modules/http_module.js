@@ -1,6 +1,5 @@
 //*******************************HTTP module************************************
 
-const { chownSync, readFileSync } = require("fs");
 const http = require("http");
 const server = http.createServer((req, res) => {
   //server is has EventEmitter, holds all capabilites of EventEmitter class
