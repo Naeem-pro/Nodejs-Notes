@@ -1,16 +1,16 @@
-const Joi = require("joi");
+const Joi = require("joi"); //joi is used in javascipt for data validations
 const { parse } = require("dotenv");
 const express = require("express"); //require function returns a function, call express
-const app = express(); //express() function will return an object of type express, store in app
+const app = express(); //express() function will return an object of type express, store in app ,now app has become a function and has certain method
+
 app.use(express.json());
 
 const courses = [
+  //Array of courses to practice express.
   { id: 1, name: "course1" },
   { id: 2, name: "course2" },
   { id: 3, name: "course3" },
 ];
-
-//now app has become a function and has certain method
 
 app.get("/", (req, res) => {
   res.send("Hello world !!!!");
@@ -25,7 +25,7 @@ app.get("/api/courses", (req, res) => {
 });
 
 app.get("/api/courses/:id", (req, res) => {
-  const course = courses.find((c) => c.id === parseInt(req.params.id)); //check whether course with given id exist or not
+  const course = courses.find((c) => c.id === parseInt(req.params.id)); //check whether course with given id exist or not, return boolean value
   if (!course) {
     return res
       .status(404)
