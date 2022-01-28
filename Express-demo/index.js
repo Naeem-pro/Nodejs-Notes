@@ -1,9 +1,16 @@
+const morgan = require("morgan");
+const helmet = require("helmet");
 const Joi = require("joi"); //joi is used in javascipt for data validations
 const { parse } = require("dotenv");
 const express = require("express"); //require function returns a function, call express
 const app = express(); //express() function will return an object of type express, store in app ,now app has become a function and has certain method
 
 app.use(express.json());
+app.use(express.static("public"));
+app.use(helmet());
+app.use(morgan("tiny"));
+app.set("view engine", "pug");
+app.set("views", "./views");
 
 const courses = [
   //Array of courses to practice express.
@@ -13,7 +20,8 @@ const courses = [
 ];
 
 app.get("/", (req, res) => {
-  res.send("Hello world !!!!");
+  res.render("index", { title: "My Express-App", message: "Hello" });
+  // res.send("Hello world !!!!");
 }); //Parameters names in callback functions can be changed. Run below commented code.
 
 // app.get("/", (clientRequest, clientResponse) => {
@@ -90,3 +98,4 @@ function validateCourse(course) {
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}....`));
+
